@@ -36,6 +36,15 @@
     font-weight: bold;
 }
 
+
+
+#label-container{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 50px;
+    color: #3178FF;
+}
+
 #subcontents{
     font-size: 30px;
     font-weight: bold;
