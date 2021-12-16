@@ -46,38 +46,46 @@
         window.requestAnimationFrame(loop);
     }
 
-    // run the webcam image through the image model
     async function predict() {
         // predict can take in an image, video or canvas html element
-        // "금발 숏컷","금발 단발","금발 장발","브라운 숏컷","브라운 단발","브라운 장발","레드 숏컷","레드 단발","레드 장발","흑발 숏컷","흑발 단발","흑발 장발"
         const prediction = await model.predict(webcam.canvas);
-        if(prediction[0].className == "금발 숏컷" && prediction[0].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "금발 숏컷 추천"
-        } else if(prediction[1].className == "금발 단발" && prediction[1].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "금발 단발 추천"
-        } else if(prediction[2].className == "금발 장발" && prediction[2].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "금발 장발 추천"
-        } else if(prediction[3].className == "브라운 숏컷" && prediction[3].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "브라운 숏컷 추천"
-        } else if(prediction[4].className == "브라운 단발" && prediction[4].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "브라운 단발 추천"
-        } else if(prediction[5].className == "브라운 장발" && prediction[5].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "브라운 장발 추천"
-        } else if(prediction[6].className == "레드 숏컷" && prediction[6].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "레드 숏컷 추천"
-        } else if(prediction[7].className == "레드 단발" && prediction[7].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "레드 단발 추천"
-        } else if(prediction[8].className == "레드 장발" && prediction[8].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "레드 장발 추천"
-        } else if(prediction[9].className == "흑발 숏컷" && prediction[9].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "흑발 숏컷 추천"
-        } else if(prediction[10].className == "흑발 단발" && prediction[10].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "흑발 단발 추천"
-        } else if(prediction[11].className == "흑발 장발" && prediction[11].probability.toFixed(2) == 1.00){
-            labelContainer.childNodes[0].innerHTML = "흑발 장발 추천"
-        } else {
-            labelContainer.childNodes[0].innerHTML = "알수없음"
-        }
+        for (let i = 0; i < maxPredictions; i++) {
+            const classPrediction =
+                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+            labelContainer.childNodes[i].innerHTML = classPrediction;
+    }
+    // run the webcam image through the image model
+    // async function predict() {
+    //     // predict can take in an image, video or canvas html element
+    //     // "금발 숏컷","금발 단발","금발 장발","브라운 숏컷","브라운 단발","브라운 장발","레드 숏컷","레드 단발","레드 장발","흑발 숏컷","흑발 단발","흑발 장발"
+    //     const prediction = await model.predict(webcam.canvas);
+    //     if(prediction[0].className == "금발 숏컷" && prediction[0].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "금발 숏컷 추천"
+    //     } else if(prediction[1].className == "금발 단발" && prediction[1].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "금발 단발 추천"
+    //     } else if(prediction[2].className == "금발 장발" && prediction[2].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "금발 장발 추천"
+    //     } else if(prediction[3].className == "브라운 숏컷" && prediction[3].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "브라운 숏컷 추천"
+    //     } else if(prediction[4].className == "브라운 단발" && prediction[4].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "브라운 단발 추천"
+    //     } else if(prediction[5].className == "브라운 장발" && prediction[5].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "브라운 장발 추천"
+    //     } else if(prediction[6].className == "레드 숏컷" && prediction[6].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "레드 숏컷 추천"
+    //     } else if(prediction[7].className == "레드 단발" && prediction[7].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "레드 단발 추천"
+    //     } else if(prediction[8].className == "레드 장발" && prediction[8].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "레드 장발 추천"
+    //     } else if(prediction[9].className == "흑발 숏컷" && prediction[9].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "흑발 숏컷 추천"
+    //     } else if(prediction[10].className == "흑발 단발" && prediction[10].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "흑발 단발 추천"
+    //     } else if(prediction[11].className == "흑발 장발" && prediction[11].probability.toFixed(2) == 1.00){
+    //         labelContainer.childNodes[0].innerHTML = "흑발 장발 추천"
+    //     } else {
+    //         labelContainer.childNodes[0].innerHTML = "알수없음"
+    //     }
         
         // for (let i = 0; i < maxPredictions; i++) {
         //     const classPrediction =
