@@ -1,0 +1,37 @@
+#result{
+    display: none;
+    background-color : whitesmoke;
+    width: 80%;
+    text-align: center;
+    border-radius: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#shareResult{
+    background-color : whitesmoke;
+    width: 80%;
+    text-align: center;
+    border-radius: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.resultName
+
+.resultDesc{
+    font-size: 20px;
+}
+
+.kakao{
+    color: white;
+    background-color: #FEE500;
+}
+
+.gohome{
+    color: white;
+    background-color: #71DDD7;
+}
+
+.gohome:hover, .gohome:focus{
+    color: white;
+    background-color: #71DDD7;
+}
